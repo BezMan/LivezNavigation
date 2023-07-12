@@ -39,6 +39,11 @@ class SecondFragment : Fragment(), MyListAdapter.OnItemClickListener {
         _binding = null
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.progressBarView.toggleShowView(true)
+    }
+
 
     private fun initUI() {
 
@@ -59,10 +64,17 @@ class SecondFragment : Fragment(), MyListAdapter.OnItemClickListener {
     }
 
     private fun displayData(list: List<Country>) {
+        binding.progressBarView.toggleShowView(false)
+        binding.noNotesView.toggleShowView(list.isEmpty())
         myListAdapter.submitList(list)
-        //no notes layout
-//        binding.noNotesView.toggleShowView(list.isEmpty())
+    }
 
+    fun View.toggleShowView(show: Boolean) {
+        visibility = if (show) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
     }
 
     override fun onItemClick(country: Country) {}

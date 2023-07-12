@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.liveznav.R
@@ -31,8 +32,12 @@ class FirstFragment : Fragment() {
 
         binding.buttonFirst.setOnClickListener {
             val nameText = binding.etName.text.toString()
-            viewModel.fetchData(nameText)
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            if (nameText.isNotBlank()) {
+                viewModel.fetchData(nameText)
+                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            } else {
+                Toast.makeText(requireContext(), "must enter text", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
