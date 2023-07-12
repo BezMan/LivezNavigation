@@ -32,10 +32,6 @@ class SecondFragment : Fragment(), MyListAdapter.OnItemClickListener {
 
         initUI()
         observeResponse()
-
-
-        viewModel.fetchData("nameText")
-
     }
 
     override fun onDestroyView() {

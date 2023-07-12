@@ -31,7 +31,7 @@ class FirstFragment : Fragment() {
 
         binding.buttonFirst.setOnClickListener {
             val nameText = binding.etName.text.toString()
-//            viewModel.fetchData(nameText)
+            viewModel.fetchData(nameText)
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
     }
