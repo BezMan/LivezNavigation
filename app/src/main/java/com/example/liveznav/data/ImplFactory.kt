@@ -13,27 +13,29 @@ object ImplFactory {
     }
 
     private fun create(): ApiImpl {
-//        return FakeArticlesApi()
-        return ArticlesApi()
+//        return MockApi()
+        return ServerApi()
     }
 
+
 }
+
+private fun convertGson(jsonString: String?): CountriesPerName =
+    Gson().fromJson(jsonString, CountriesPerName::class.java)
+
 
 internal interface ApiImpl {
     suspend fun getItems(name: String): CountriesPerName
 }
 
 
-private class ArticlesApi : ApiImpl {
+private class ServerApi : ApiImpl {
 
     val client = OkHttpClient()
 
-
     override suspend fun getItems(name: String): CountriesPerName {
-        val url = Consts.baseUrl + name
-        val jsonString = getRequest(url)
-        val countriesPerName = Gson().fromJson(jsonString, CountriesPerName::class.java)
-        return countriesPerName
+        val jsonString = getRequest(Consts.baseUrl + name)
+        return convertGson(jsonString)
 
     }
 
@@ -55,14 +57,11 @@ private class ArticlesApi : ApiImpl {
 
 }
 
-private class FakeArticlesApi : ApiImpl {
+private class MockApi : ApiImpl {
 
     override suspend fun getItems(name: String): CountriesPerName {
-        // Get the JSON data
         val jsonString = Consts.jsonRaw
-
-        val countriesPerName = Gson().fromJson(jsonString, CountriesPerName::class.java)
-        return countriesPerName
+        return convertGson(jsonString)
     }
 
 

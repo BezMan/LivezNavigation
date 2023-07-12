@@ -53,7 +53,7 @@ class SecondFragment : Fragment(), MyListAdapter.OnItemClickListener {
 
     private fun observeResponse() {
         viewModel.listState.observe(viewLifecycleOwner) {
-            val list = it.list
+            val list = it.countries
             displayData(list)
         }
     }
