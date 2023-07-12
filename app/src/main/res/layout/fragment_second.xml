@@ -4,31 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="20dp"
     tools:context=".ui.SecondFragment">
 
+    <TextView
+        android:id="@+id/nameTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="30sp"
+        android:gravity="center"
+        tools:text="name" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameTitle"
         tools:listitem="@layout/main_activity_list_item" />
 
     <TextView
-        app:layout_constraintStart_toStartOf="@id/recView"
-        app:layout_constraintEnd_toEndOf="@id/recView"
-        app:layout_constraintTop_toTopOf="@id/recView"
-        app:layout_constraintBottom_toBottomOf="@id/recView"
         android:id="@+id/no_notes_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="60dp"
         android:drawablePadding="10dp"
         android:gravity="center"
+        android:text="no countries to display for that name..."
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="32sp"
         android:textStyle="italic"
-        android:text="no countries to display for that name..."
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/recView"
+        app:layout_constraintEnd_toEndOf="@id/recView"
+        app:layout_constraintStart_toStartOf="@id/recView"
+        app:layout_constraintTop_toTopOf="@id/recView"
         tools:visibility="visible" />
 
     <ProgressBar

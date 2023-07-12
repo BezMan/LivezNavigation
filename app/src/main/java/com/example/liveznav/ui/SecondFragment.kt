@@ -58,13 +58,13 @@ class SecondFragment : Fragment(), MyListAdapter.OnItemClickListener {
 
     private fun observeResponse() {
         viewModel.listState.observe(viewLifecycleOwner) {
-            val list = it.countries
-            displayData(list)
+            binding.progressBarView.toggleShowView(false)
+            setViews(it.name, it.countries)
         }
     }
 
-    private fun displayData(list: List<Country>) {
-        binding.progressBarView.toggleShowView(false)
+    private fun setViews(nameTitle: String, list: List<Country>) {
+        binding.nameTitle.text = "results for: $nameTitle"
         binding.noNotesView.toggleShowView(list.isEmpty())
         myListAdapter.submitList(list)
     }

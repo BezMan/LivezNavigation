@@ -34,7 +34,7 @@ private class ServerApi : ApiImpl {
     val client = OkHttpClient()
 
     override suspend fun getItems(name: String): CountriesPerName {
-        val jsonString = getRequest(Consts.baseUrl + name)
+        val jsonString = getRequest(Consts.BASE_URL + name)
         return convertGson(jsonString)
 
     }
