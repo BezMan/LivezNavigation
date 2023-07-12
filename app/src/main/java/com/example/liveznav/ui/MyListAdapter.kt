@@ -33,7 +33,6 @@ class MyListAdapter internal constructor(context: OnItemClickListener) : ListAda
         holder.apply {
             tvCountryName.text = item.country_id
             tvProbability.text = item.probability.toString()
-
         }
 
     }

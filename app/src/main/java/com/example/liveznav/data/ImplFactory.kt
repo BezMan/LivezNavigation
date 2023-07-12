@@ -17,7 +17,6 @@ object ImplFactory {
         return ServerApi()
     }
 
-
 }
 
 private fun convertGson(jsonString: String?): CountriesPerName =

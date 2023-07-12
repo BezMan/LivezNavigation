@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.liveznav.data.Country
 import com.example.liveznav.databinding.FragmentSecondBinding
+import com.example.liveznav.utils.ExtensionUtils.Companion.toggleShowView
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -44,7 +45,6 @@ class SecondFragment : Fragment(), MyListAdapter.OnItemClickListener {
         binding.progressBarView.toggleShowView(true)
     }
 
-
     private fun initUI() {
 
         //RECYCLER
@@ -54,7 +54,6 @@ class SecondFragment : Fragment(), MyListAdapter.OnItemClickListener {
         binding.recView.adapter = myListAdapter
 
     }
-
 
     private fun observeResponse() {
         viewModel.listState.observe(viewLifecycleOwner) {
@@ -67,14 +66,6 @@ class SecondFragment : Fragment(), MyListAdapter.OnItemClickListener {
         binding.nameTitle.text = "results for: $nameTitle"
         binding.noNotesView.toggleShowView(list.isEmpty())
         myListAdapter.submitList(list)
-    }
-
-    fun View.toggleShowView(show: Boolean) {
-        visibility = if (show) {
-            View.VISIBLE
-        } else {
-            View.GONE
-        }
     }
 
     override fun onItemClick(country: Country) {}
